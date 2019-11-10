@@ -1,6 +1,6 @@
 import os
 import requests
-from django.views.generic import FormView
+from django.views.generic import FormView, DetailView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, reverse
 from django.contrib.auth import authenticate, login, logout
@@ -196,4 +196,6 @@ def kakao_callback(request):
 
 
 class UserProfileView(DetailView):
-    pass
+
+    model = models.User
+    context_object_name = "user_obj"
