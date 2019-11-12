@@ -103,7 +103,7 @@ def github_callback(request):
                     bio = profile_json.get("bio")
                     try:
                         user = models.User.objects.get(email=email)
-                        if user.login_method != models.User.LOGIN_GITHUB:
+                        if user.login_method != models.User.LOGING_GITHUB:
                             raise GithubException(
                                 f"Please log in with: {user.login_method}"
                             )
@@ -113,7 +113,7 @@ def github_callback(request):
                             first_name=name,
                             username=email,
                             bio=bio,
-                            login_method=models.User.LOGIN_GITHUB,
+                            login_method=models.User.LOGING_GITHUB,
                             email_verified=True,
                         )
                         user.set_unusable_password()
