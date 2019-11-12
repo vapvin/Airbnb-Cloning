@@ -206,6 +206,7 @@ class UpdateProfileView(UpdateView):
     model = models.User
     template_name = "users/update-profile.html"
     fields = (
+        "email",
         "first_name",
         "last_name",
         "avatar",
