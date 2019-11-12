@@ -17,13 +17,14 @@
 
 .btn {
   @apply text-center rounded-sm py-5 font-light text-lg w-full;
-  &.btn--small {
-    @apply py-3 rounded-lg;
-  }
+}
+
+.btn-link {
+  @apply text-center py-3 rounded-lg font-light text-lg w-full;
 }
 
 input {
-  @apply rounded-sm py-5 font-light text-lg w-full text-left border border-gray-600 px-5;
+  @apply rounded-sm py-5 font-light text-lg w-full text-left border border-gray-600 px-5 text-white bg-red-500;
   &:focus {
     @apply outline-none border-teal-500;
   }
