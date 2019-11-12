@@ -30,6 +30,11 @@ input {
   }
 }
 
+textarea {
+  resize: none;
+  height: 200px;
+}
+
 form {
   .input {
     @apply mb-3 w-full;
