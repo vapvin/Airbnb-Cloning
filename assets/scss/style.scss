@@ -20,7 +20,7 @@
 }
 
 .btn-link {
-  @apply text-center py-3 bg-red-500 text-white rounded-lg font-light text-lg w-full;
+  @apply text-center py-3 rounded-lg font-light text-lg w-full text-white bg-red-500;
 }
 
 input,
@@ -55,22 +55,6 @@ form {
   }
 }
 
-.message {
-  animation: messageFadeIn 5s ease-in-out forwards;
-  &.error {
-    @apply bg-red-600;
-  }
-  &.info {
-    @apply bg-blue-500;
-  }
-  &.success {
-    @apply bg-green-500;
-  }
-  &.warning {
-    @apply bg-yellow-400;
-  }
-}
-
 @keyframes messageFadeIn {
   0% {
     opacity: 0;
@@ -87,6 +71,22 @@ form {
   100% {
     opacity: 0;
     transform: translateY(-50px);
+  }
+}
+
+.message {
+  animation: messageFadeIn 5s ease-in-out forwards;
+  &.error {
+    @apply bg-red-600;
+  }
+  &.info {
+    @apply bg-blue-500;
+  }
+  &.success {
+    @apply bg-green-500;
+  }
+  &.warning {
+    @apply bg-yellow-400;
   }
 }
 
