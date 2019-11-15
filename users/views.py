@@ -5,6 +5,7 @@ from django.views.generic import FormView, DetailView, UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, reverse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.core.files.base import ContentFile
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -111,7 +112,7 @@ def github_callback(request):
                     bio = profile_json.get("bio")
                     try:
                         user = models.User.objects.get(email=email)
-                        if user.login_method != models.User.LOGING_GITHUB:
+                        if user.login_method != models.User.LOGIN_GITHUB:
                             raise GithubException(
                                 f"Please log in with: {user.login_method}"
                             )
@@ -121,7 +122,7 @@ def github_callback(request):
                             first_name=name,
                             username=email,
                             bio=bio,
-                            login_method=models.User.LOGING_GITHUB,
+                            login_method=models.User.LOGIN_GITHUB,
                             email_verified=True,
                         )
                         user.set_unusable_password()
@@ -222,7 +223,6 @@ class UpdateProfileView(mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateView
         "language",
         "currency",
     )
-
     success_message = "Profile Updated"
 
     def get_object(self, queryset=None):
@@ -230,28 +230,43 @@ class UpdateProfileView(mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateView
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
-        form.fields['first_name'].widget.attrs = {"placeholder": "First name"}
-        form.fields['last_name'].widget.attrs = {"placeholder": "Last name"}
-        form.fields['gender'].widget.attrs = {"placeholder": "Gender"}
-        form.fields['bio'].widget.attrs = {"placeholder": "Bio"}
-        form.fields['birthdate'].widget.attrs = {"placeholder": "Birthdate"}
+        form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
+        form.fields["last_name"].widget.attrs = {"placeholder": "Last name"}
+        form.fields["bio"].widget.attrs = {"placeholder": "Bio"}
+        form.fields["birthdate"].widget.attrs = {"placeholder": "Birthdate"}
+        form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
         return form
 
 
-class UpdatePasswordView(mixins.EmailLoginOnlyView, mixins.LoggedInOnlyView, SuccessMessageMixin, PasswordChangeView):
+class UpdatePasswordView(
+    mixins.LoggedInOnlyView,
+    mixins.EmailLoginOnlyView,
+    SuccessMessageMixin,
+    PasswordChangeView,
+):
 
     template_name = "users/update-password.html"
     success_message = "Password Updated"
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
-        form.fields['old_password'].widget.attrs = {
+        form.fields["old_password"].widget.attrs = {
             "placeholder": "Current password"}
-        form.fields['new_password1'].widget.attrs = {
+        form.fields["new_password1"].widget.attrs = {
             "placeholder": "New password"}
-        form.fields['new_password2'].widget.attrs = {
-            "placeholder": "Confirm new password"}
+        form.fields["new_password2"].widget.attrs = {
+            "placeholder": "Confirm new password"
+        }
         return form
 
     def get_success_url(self):
         return self.request.user.get_absolute_url()
+
+
+@login_required
+def switch_hosting(request):
+    try:
+        del request.session["is_hosting"]
+    except KeyError:
+        request.session["is_hosting"] = True
+    return redirect(reverse("core:home"))
