@@ -195,7 +195,7 @@ def kakao_callback(request):
                 photo_request = requests.get(profile_image)
                 user.avatar.save(
                     f"{nickname}-avatar", ContentFile(photo_request.content)
-                )
+                )  # this showing error
         messages.success(request, f"Welcome back {user.first_name}")
         login(request, user)
         return redirect(reverse("core:home"))
