@@ -270,3 +270,12 @@ def switch_hosting(request):
     except KeyError:
         request.session["is_hosting"] = True
     return redirect(reverse("core:home"))
+
+
+# @login_required
+# def switch_hosting(request):
+#     try:
+#         del request.session["is_hosting"]
+#     except KeyError:
+#         request.session["is_hosting"] = True
+#     return redirect(reverse("core:home"))
