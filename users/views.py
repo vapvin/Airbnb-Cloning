@@ -80,6 +80,10 @@ def github_login(request):
 class GithubException(Exception):
     pass
 
+# throw Error
+# Github login Api Error DO NOT PRINT ERROR KAKAO
+# Changed Github login => FaceBook Login
+
 
 def github_callback(request):
     try:
