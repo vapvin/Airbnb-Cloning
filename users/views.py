@@ -283,3 +283,4 @@ def switch_hosting(request):
 #     except KeyError:
 #         request.session["is_hosting"] = True
 #     return redirect(reverse("core:home"))
+# ValueError at /reservations/create/320/2020-1-20
