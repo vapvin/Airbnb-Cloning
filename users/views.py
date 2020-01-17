@@ -1,5 +1,6 @@
 import os
 import requests
+from django.http import HttpResponse
 from django.contrib.auth.views import PasswordChangeView
 from django.views.generic import FormView, DetailView, UpdateView
 from django.urls import reverse_lazy
@@ -276,11 +277,8 @@ def switch_hosting(request):
     return redirect(reverse("core:home"))
 
 
-# @login_required
-# def switch_hosting(request):
-#     try:
-#         del request.session["is_hosting"]
-#     except KeyError:
-#         request.session["is_hosting"] = True
-#     return redirect(reverse("core:home"))
-# ValueError at /reservations/create/320/2020-1-20
+def switch_lang(request):
+    lang = request.GET.get('lang', None)
+    if lang is not None:
+        pass
+    return HttpResponse(status=200)
