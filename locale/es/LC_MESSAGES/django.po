@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-17 19:49+0900\n"
+"POT-Creation-Date: 2020-01-20 13:43+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,10 +22,15 @@ msgstr ""
 msgid "Search By City"
 msgstr "Buscar por Ciudad"
 
-#: templates/partials/footer.html:4
+#: templates/partials/footer.html:5
 msgid "Please don't copy"
 msgstr "Por favor no nos copies."
 
-#: templates/partials/footer.html:6
+#: templates/partials/footer.html:7
 msgid "All rights reserved"
-msgstr "Todos los derechos reservados" 
+msgstr "Todos los derechos reservados"
+
+#: templates/rooms/room_list.html:26
+#, python-format
+msgid "Page %(current_page)s of %(total_page)s"
+msgstr "Pagina %(current_page)s de %(total_page)s"
