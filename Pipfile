@@ -7,6 +7,8 @@ verify_ssl = true
 flake8 = "*"
 black = "*"
 autopep8 = "*"
+dwsebcli = "*"
+awsebcli = "*"
 
 [packages]
 django = "==2.2.5"
