@@ -31,9 +31,9 @@
             {% on_favs room as on_favs_boolean %}
             
             {% if on_favs_boolean %}
-                <a class="block mb-10 w-2/6 bg-teal-500" href="{% url 'lists:toggle-room' room.pk %}?action=remove">{% trans "Remove from Fav" %}</a>
+                <a class="block mb-10 w-2/6 text-teal-500 font-bold" href="{% url 'lists:toggle-room' room.pk %}?action=remove">{% trans "Remove from Fav" %}</a>
             {% else %}
-                <a class="block mb-10 w-2/6" href="{% url 'lists:toggle-room' room.pk %}?action=add">{% trans "Save to Fav" %}</a>
+                <a class="block mb-10 w-2/6 text-teal-500 font-bold" href="{% url 'lists:toggle-room' room.pk %}?action=add">{% trans "Save to Fav" %}</a>
             {% endif %}                
             <div class="flex border-section">
                 <span class="mr-5 font-light">{{room.room_type}}</span>

@@ -11,4 +11,3 @@ def on_favs(context, room):
         user=user, name="My Favourites Houses"
     )
     return room in the_list.rooms.all()
-    pass
